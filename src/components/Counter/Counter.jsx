@@ -1,36 +1,49 @@
 import React from 'react';
+import { Buttons } from './Buttons';
+import { CounterValue } from './CounterValue';
 import './Counter.css';
 
 export class Counter extends React.Component {
-    // static defaultProps = {
-    //     value: 0,
-    // }
+    static defaultProps = {
+        initialValue: 1,
+    }
 
     // static propType = {
     //     value: propType.string.isRequired
     // }
     
     state = {
-        value: 10,
+        value: this.props.initialValue,
     }
     
-    handlerDecrement = (event) => {
-        console.log('Збільшуємо на 1')
+    handlerDecrement = () => {
+        // Зміна стану при умові перезаписати значення
+        // this.setState({
+        //   value: this.state.value +1
+        // })
+
+        // Зміна стану від попереднього значення
+        this.setState((prevState) => {
+          return {
+            value: prevState.value +1
+          }
+        })
 
         // const taregtEl = event.target;
     }
-    handleIncrement = (event) => {
-        console.log("Зменшуємо на 1")
+    handlerIncrement = () => {
+      this.setState((prevState) => {
+        return {
+          value: prevState.value -1
+        }
+      })
     }
     render() {
         return <div className="Counter__controls">
-        <span className="Counter__value">{this.state.value}</span>
-      <button type="button" onClick={this.handlerDecrement}>
-        Збільшити на 1
-      </button>
-      <button type="button" onClick={this.handleIncrement}>
-        Зменшити на 1
-      </button>
+        <CounterValue value = {this}/>
+        <Buttons
+        onDecrement={this.handlerDecrement}
+        onIncrement={this.handlerIncrement}/>
     </div>
     }
 } 

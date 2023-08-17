@@ -1,7 +1,11 @@
-import { Counter } from "./Counter/Counter"
+// import { Counter } from "./Counter/Counter"
+import { DropDown } from "./DropDown/DropDown";
 
 export const App = () => {
   return (
-    <Counter/>
+    <>
+      {/* <Counter initialValue = {0}/> */}
+      <DropDown/>
+    </>
   );
 };
