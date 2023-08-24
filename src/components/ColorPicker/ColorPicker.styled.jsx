@@ -16,10 +16,11 @@ export const Option = styled.button`
   height: 60px;
   margin: 8px;
   border: none;
-  background-color: ${({backgroundColor}) => backgroundColor};
-  transition: transfrom 250ms linear;
+  background-color: ${({backgroundcolor}) => backgroundcolor};
+  transition: scale 250ms linear;
+  border: ${({currentidx, idx}) => idx === currentidx ? '3px solid black' : 'none'}
 
   &:hover{
-    transform: translateY(-50%);
+    transform: scale(1.1);
   }
 `
