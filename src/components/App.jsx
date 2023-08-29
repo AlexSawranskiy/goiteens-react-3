@@ -1,17 +1,25 @@
-import toDoList from './ToDolist';
-import { ToDoList } from './ToDoList/ToDoList';
-// import ColorPicker from './ColorPicker/ColorPicker'
-// import ColorPickerOptions from './ColorPicker/ColorPickerData'
-// import { Counter } from "./Counter/Counter"
-// import { DropDown } from "./DropDown/DropDown";
+import { Component } from "react";
+import stickers from "../stickers.json"
+import { StickerList } from "./Stickers/StickerList";
 
-export const App = () => {
+export class App extends Component {
+  state = {
+    stickerLable: null
+  }
+
+  labelHandler = label => {
+    this.setState({stickerLable: label})
+  }
+  
+render(){
+  const {stickerLable} = this.state;
   return (
     <>
-      <ToDoList array = {toDoList}/>
-      {/* <ColorPicker options = {ColorPickerOptions}/> */}
-      {/* <Counter initialValue = {0}/> */}
-      {/* <DropDown/> */}
+      {stickerLable && <h1>{stickerLable}</h1>}
+      <StickerList 
+      stickers = {stickers}
+      onGetLabel = {this.labelHandler}/>
     </>
   );
 };
+}
